@@ -1,5 +1,15 @@
 import React, { useCallback, useEffect, useState } from "react";
 
+// todo usecallback is helpful when there is child prop,
+
+// todo lets assume is ma increment wala b 1 function ha, us ki state change hony pe ye
+// todo call ho ga, lakin useCallback se sirf dependency change hony pe call ho ga
+
+
+// By memoizing the function, useCallback ensures that the function reference
+// remains the same across re-renders unless its dependencies change.
+// This is useful to avoid unnecessary re-creation of functions on each render.
+
 const App = () => {
   const [length, setLength] = useState(8);
   const [numberAllowed, setNumberAllowed] = useState(false);
@@ -30,7 +40,9 @@ const App = () => {
     generatePassword();
   }, [length, numberAllowed, characterAllowed]);
 
+  // console.log("abdullah")
   return (
+
     <div className="bg-gray-800 h-[100vh] items-center pt-28 flex flex-col text-white">
       <h1> Password generator</h1>
       <div className="flex">
