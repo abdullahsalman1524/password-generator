@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 // todo usecallback is helpful when there is child prop,
 
 // todo lets assume is ma increment wala b 1 function ha, us ki state change hony pe ye
 // todo call ho ga, lakin useCallback se sirf dependency change hony pe call ho ga
-
 
 // By memoizing the function, useCallback ensures that the function reference
 // remains the same across re-renders unless its dependencies change.
@@ -16,6 +15,11 @@ const App = () => {
   const [numberAllowed, setNumberAllowed] = useState(false);
   const [characterAllowed, setCharacterAllowed] = useState(false);
   const [password, setPassword] = useState("");
+
+  const passwordRef = useRef(null);
+
+  // by this it will be selected.
+  // passwordRef.current.select()
 
   const generatePassword = useCallback(() => {
     let pass = "";
@@ -30,8 +34,8 @@ const App = () => {
     }
 
     for (let i = 0; i < length; i++) {
-      let index = Math.floor(Math.random() * characters.length)
-      pass += characters.charAt(index)
+      let index = Math.floor(Math.random() * characters.length);
+      pass += characters.charAt(index);
     }
 
     setPassword(pass);
@@ -43,7 +47,6 @@ const App = () => {
 
   // console.log("abdullah")
   return (
-
     <div className="bg-gray-800 h-[100vh] items-center pt-28 flex flex-col text-white">
       <h1> Password generator</h1>
       <div className="flex">
@@ -53,7 +56,9 @@ const App = () => {
           placeholder="Your Desired Password is "
           type="text"
         />
-        <button className="bg-blue-600 px-4 h-8">copy</button>
+        <button ref={passwordRef} className="bg-blue-600 px-4 h-8">
+          copy
+        </button>
       </div>
 
       <div className="flex">
