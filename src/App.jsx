@@ -10,6 +10,7 @@ import React, { useCallback, useEffect, useState } from "react";
 // remains the same across re-renders unless its dependencies change.
 // This is useful to avoid unnecessary re-creation of functions on each render.
 
+// cache kar leta ha functionko jab tak dependency change na ho wo dobara call ni karta.
 const App = () => {
   const [length, setLength] = useState(8);
   const [numberAllowed, setNumberAllowed] = useState(false);
